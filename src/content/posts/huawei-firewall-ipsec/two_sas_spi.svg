@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="620" viewBox="0 0 1180 620" role="img" aria-label="IKEv1 Quick Mode 动画示意图">
+
+<style><![CDATA[
+  .bg { fill:#0b1220; } .panel { fill:#111d31; stroke:#31445e; stroke-width:1.5; }
+  .edge { stroke:#39506b; stroke-width:1.5; fill:none; }
+  .title { fill:#f8fafc; font:700 32px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .sub { fill:#aebed3; font:400 17px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .head { fill:#f1f5f9; font:700 22px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .body { fill:#d4e3f5; font:400 19px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .tiny { fill:#aebed3; font:400 15px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .mono { fill:#e0edfb; font:600 17px ui-monospace,SFMono-Regular,Consolas,monospace; }
+  .cyan { fill:#67e8f9; } .green { fill:#5eead4; } .orange { fill:#fdba74; } .purple { fill:#c4b5fd; }
+  .lineC { stroke:#22d3ee; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.2s linear infinite; }
+  .lineG { stroke:#34d399; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.4s linear infinite; }
+  .lineP { stroke:#a78bfa; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.6s linear infinite; }
+  .pulse { animation:pulse 2.6s ease-in-out infinite; } .pulse2 { animation:pulse 3.2s ease-in-out infinite; }
+  .glow { animation:glow 2.4s ease-in-out infinite; }
+  @keyframes flow {to{stroke-dashoffset:-40}} @keyframes pulse{0%,100%{opacity:.65}50%{opacity:1}}
+  @keyframes glow {0%,100%{filter:drop-shadow(0 0 1px #22d3ee)}50%{filter:drop-shadow(0 0 10px #22d3ee)}}
+  @media (prefers-reduced-motion:reduce){.lineC,.lineG,.lineP,.pulse,.pulse2,.glow{animation:none}}
+]]></style>
+<rect class="bg" width="1180" height="620" rx="22"/>
+<text x="42" y="58" class="title">为什么会产生两个 IPsec SA？SPI 如何识别方向？</text><text x="42" y="91" class="sub">IPsec SA 是单向的；双向通信至少需要一个出站 SA 和一个入站 SA</text><rect x="48" y="153" width="230" height="115" rx="14" fill="#18344b" stroke="#387998" stroke-width="1.5" /><text x="163" y="196" class="head" text-anchor="middle">FW1</text><text x="163" y="232" class="tiny" text-anchor="middle">LAN A 192.168.1.0/24</text><rect x="895" y="153" width="230" height="115" rx="14" fill="#18344b" stroke="#387998" stroke-width="1.5" /><text x="1010" y="196" class="head" text-anchor="middle">FW2</text><text x="1010" y="232" class="tiny" text-anchor="middle">LAN B 192.168.2.0/24</text><path d="M284 182 L888 182" class="lineC"/><circle r="8" fill="#67e8f9" opacity=".95"><animateMotion dur="3.6s" begin="0s" repeatCount="indefinite" path="M284 182 L888 182"/></circle><rect x="342" y="121" width="488" height="45" rx="14" fill="#193246" stroke="#3b82a6" stroke-width="1.5" /><text x="586" y="150" class="mono" text-anchor="middle">FW1 发送 → FW2 接收：SPI = 0x22B20001</text><path d="M888 253 L284 253" class="lineG"/><circle r="8" fill="#5eead4" opacity=".95"><animateMotion dur="3.6s" begin="1.5s" repeatCount="indefinite" path="M888 253 L284 253"/></circle><rect x="342" y="273" width="488" height="45" rx="14" fill="#17362f" stroke="#2c7557" stroke-width="1.5" /><text x="586" y="302" class="mono" text-anchor="middle">FW2 发送 → FW1 接收：SPI = 0x11A10001</text><rect x="47" y="351" width="512" height="190" rx="14" fill="#13243a" stroke="#324961" stroke-width="1.5" /><text x="71" y="388" class="head">FW1 的 SAD</text><text x="71" y="430" class="mono">Outbound  → SPI 0x22B20001</text><text x="71" y="468" class="mono">Inbound   ← SPI 0x11A10001</text><text x="71" y="510" class="tiny">每个 SA 有各自的密钥 / Seq / 防重放状态</text><rect x="621" y="351" width="512" height="190" rx="14" fill="#13243a" stroke="#324961" stroke-width="1.5" /><text x="645" y="388" class="head">FW2 的 SAD</text><text x="645" y="430" class="mono">Inbound   ← SPI 0x22B20001</text><text x="645" y="468" class="mono">Outbound  → SPI 0x11A10001</text><text x="645" y="510" class="tiny">接收端按 SPI 查找对应入站 SA</text><text x="48" y="585" class="sub">图中 SPI 为教学示例：实际由各方向的接收端选定。</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="550" viewBox="0 0 1180 550" role="img" aria-label="IKEv1 Quick Mode 动画示意图">
+
+<style><![CDATA[
+  .bg { fill:#0b1220; } .panel { fill:#111d31; stroke:#31445e; stroke-width:1.5; }
+  .edge { stroke:#39506b; stroke-width:1.5; fill:none; }
+  .title { fill:#f8fafc; font:700 32px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .sub { fill:#aebed3; font:400 17px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .head { fill:#f1f5f9; font:700 22px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .body { fill:#d4e3f5; font:400 19px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .tiny { fill:#aebed3; font:400 15px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .mono { fill:#e0edfb; font:600 17px ui-monospace,SFMono-Regular,Consolas,monospace; }
+  .cyan { fill:#67e8f9; } .green { fill:#5eead4; } .orange { fill:#fdba74; } .purple { fill:#c4b5fd; }
+  .lineC { stroke:#22d3ee; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.2s linear infinite; }
+  .lineG { stroke:#34d399; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.4s linear infinite; }
+  .lineP { stroke:#a78bfa; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.6s linear infinite; }
+  .pulse { animation:pulse 2.6s ease-in-out infinite; } .pulse2 { animation:pulse 3.2s ease-in-out infinite; }
+  .glow { animation:glow 2.4s ease-in-out infinite; }
+  @keyframes flow {to{stroke-dashoffset:-40}} @keyframes pulse{0%,100%{opacity:.65}50%{opacity:1}}
+  @keyframes glow {0%,100%{filter:drop-shadow(0 0 1px #22d3ee)}50%{filter:drop-shadow(0 0 10px #22d3ee)}}
+  @media (prefers-reduced-motion:reduce){.lineC,.lineG,.lineP,.pulse,.pulse2,.glow{animation:none}}
+]]></style>
+<rect class="bg" width="1180" height="550" rx="22"/>
+<text x="42" y="57" class="title">IKEv1 IPsec VPN：从协商到加密数据</text><text x="42" y="91" class="sub">第一阶段建立 IKE SA；第二阶段 Quick Mode 协商 IPsec SA；随后由 ESP 承载业务流量</text><rect x="46" y="135" width="324" height="259" rx="14" fill="#13243a" stroke="#324961" stroke-width="1.5" /><rect x="60" y="149" width="7" height="38" rx="3" fill="#38bdf8" class="pulse"/><text x="83" y="173" class="head">Phase 1</text><text x="70" y="210" class="tiny">Main Mode · 6 条消息</text><text x="71" y="253" class="body">✓ 双方认证身份</text><text x="71" y="298" class="body">✓ 建立 IKE SA</text><text x="71" y="343" class="body">✓ 产生 SKEYID_d / _a / _e</text><rect x="427" y="135" width="324" height="259" rx="14" fill="#13243a" stroke="#324961" stroke-width="1.5" /><rect x="441" y="149" width="7" height="38" rx="3" fill="#a78bfa" class="pulse"/><text x="464" y="173" class="head">Phase 2</text><text x="451" y="210" class="tiny">Quick Mode · 3 条消息</text><text x="452" y="253" class="body">✓ 协商 ESP / 流量选择器</text><text x="452" y="298" class="body">✓ 交换 Ni / Nr，可选 PFS</text><text x="452" y="343" class="body">✓ 产生两个方向的 KEYMAT</text><rect x="808" y="135" width="324" height="259" rx="14" fill="#13243a" stroke="#324961" stroke-width="1.5" /><rect x="822" y="149" width="7" height="38" rx="3" fill="#34d399" class="pulse"/><text x="845" y="173" class="head">Data Plane</text><text x="832" y="210" class="tiny">ESP · 实际业务报文</text><text x="833" y="253" class="body">✓ 加密原始 IP 数据包</text><text x="833" y="298" class="body">✓ 使用独立收发 IPsec SA</text><text x="833" y="343" class="body">✓ SPI / Seq / 防重放验证</text><path d="M375 261 L420 261" class="lineC"/><circle r="5" fill="#67e8f9" opacity=".95"><animateMotion dur="1.4s" begin=".2s" repeatCount="indefinite" path="M375 261 L420 261"/></circle><path d="M756 261 L801 261" class="lineC"/><circle r="5" fill="#67e8f9" opacity=".95"><animateMotion dur="1.4s" begin=".2s" repeatCount="indefinite" path="M756 261 L801 261"/></circle><rect x="45" y="430" width="1090" height="84" rx="14" fill="#162640" stroke="#365476" stroke-width="1.5" /><text x="67" y="465" class="body">控制面：IKE (UDP 500 / NAT-T UDP 4500)</text><text x="67" y="495" class="body">数据面：ESP (IP 协议号 50)；NAT-T 时 ESP-in-UDP 4500</text>
+</svg>

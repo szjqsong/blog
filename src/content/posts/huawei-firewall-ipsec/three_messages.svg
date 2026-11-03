@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="740" viewBox="0 0 1180 740" role="img" aria-label="IKEv1 Quick Mode 动画示意图">
+
+<style><![CDATA[
+  .bg { fill:#0b1220; } .panel { fill:#111d31; stroke:#31445e; stroke-width:1.5; }
+  .edge { stroke:#39506b; stroke-width:1.5; fill:none; }
+  .title { fill:#f8fafc; font:700 32px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .sub { fill:#aebed3; font:400 17px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .head { fill:#f1f5f9; font:700 22px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .body { fill:#d4e3f5; font:400 19px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .tiny { fill:#aebed3; font:400 15px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .mono { fill:#e0edfb; font:600 17px ui-monospace,SFMono-Regular,Consolas,monospace; }
+  .cyan { fill:#67e8f9; } .green { fill:#5eead4; } .orange { fill:#fdba74; } .purple { fill:#c4b5fd; }
+  .lineC { stroke:#22d3ee; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.2s linear infinite; }
+  .lineG { stroke:#34d399; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.4s linear infinite; }
+  .lineP { stroke:#a78bfa; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.6s linear infinite; }
+  .pulse { animation:pulse 2.6s ease-in-out infinite; } .pulse2 { animation:pulse 3.2s ease-in-out infinite; }
+  .glow { animation:glow 2.4s ease-in-out infinite; }
+  @keyframes flow {to{stroke-dashoffset:-40}} @keyframes pulse{0%,100%{opacity:.65}50%{opacity:1}}
+  @keyframes glow {0%,100%{filter:drop-shadow(0 0 1px #22d3ee)}50%{filter:drop-shadow(0 0 10px #22d3ee)}}
+  @media (prefers-reduced-motion:reduce){.lineC,.lineG,.lineP,.pulse,.pulse2,.glow{animation:none}}
+]]></style>
+<rect class="bg" width="1180" height="740" rx="22"/>
+<text x="42" y="57" class="title">Quick Mode 三条消息：完整时序图</text><text x="42" y="89" class="sub">第 1、2 条协商 SA / Nonce / 可选 PFS；第 3 条确认双方活性，结束快速模式</text><rect x="48" y="115" width="190" height="63" rx="14" fill="#18354a" stroke="#367591" stroke-width="1.5" /><text x="143" y="141" class="head" text-anchor="middle">FW1 · Initiator</text><text x="143" y="165" class="tiny" text-anchor="middle">发起方</text><rect x="945" y="115" width="190" height="63" rx="14" fill="#18354a" stroke="#367591" stroke-width="1.5" /><text x="1040" y="141" class="head" text-anchor="middle">FW2 · Responder</text><text x="1040" y="165" class="tiny" text-anchor="middle">响应方</text><path d="M143 178 V660 M1040 178 V660" stroke="#54708c" stroke-width="2" stroke-dasharray="6 8"/><circle cx="39" cy="255" r="21" fill="#22d3ee" opacity=".2"/><text x="39" y="262" class="head" text-anchor="middle">①</text><path d="M155 255 L1028 255" class="lineC"/><circle r="9" fill="#22d3ee" opacity=".95"><animateMotion dur="3.6s" begin="0s" repeatCount="indefinite" path="M155 255 L1028 255"/></circle><rect x="300" y="187" width="572" height="46" rx="9" fill="#142a3c" stroke="#22d3ee" stroke-width="1.5" /><text x="586" y="217" class="mono" text-anchor="middle">HDR*, HASH(1), SA, Ni [,KE] [,IDci,IDcr]</text><rect x="251" y="275" width="670" height="54" rx="10" fill="#15263d" stroke="#324961" stroke-width="1.5" /><text x="586" y="308" class="body" text-anchor="middle">FW1 提议 ESP 参数、发送随机数 Ni 和可选 DH 公共值</text><circle cx="39" cy="425" r="21" fill="#34d399" opacity=".2"/><text x="39" y="432" class="head" text-anchor="middle">②</text><path d="M155 425 L1028 425" class="lineG"/><circle r="9" fill="#34d399" opacity=".95"><animateMotion dur="3.6s" begin="1.2s" repeatCount="indefinite" path="M1028 425 L155 425"/></circle><rect x="300" y="357" width="572" height="46" rx="9" fill="#142a3c" stroke="#34d399" stroke-width="1.5" /><text x="586" y="387" class="mono" text-anchor="middle">HDR*, HASH(2), SA, Nr [,KE] [,IDci,IDcr]</text><rect x="251" y="445" width="670" height="54" rx="10" fill="#15263d" stroke="#324961" stroke-width="1.5" /><text x="586" y="478" class="body" text-anchor="middle">FW2 接受参数、发送随机数 Nr、选定接收用 SPI</text><circle cx="39" cy="590" r="21" fill="#a78bfa" opacity=".2"/><text x="39" y="597" class="head" text-anchor="middle">③</text><path d="M155 590 L1028 590" class="lineP"/><circle r="9" fill="#a78bfa" opacity=".95"><animateMotion dur="3.6s" begin="2.4s" repeatCount="indefinite" path="M155 590 L1028 590"/></circle><rect x="300" y="522" width="572" height="46" rx="9" fill="#142a3c" stroke="#a78bfa" stroke-width="1.5" /><text x="586" y="552" class="mono" text-anchor="middle">HDR*, HASH(3)</text><rect x="251" y="610" width="670" height="54" rx="10" fill="#15263d" stroke="#324961" stroke-width="1.5" /><text x="586" y="643" class="body" text-anchor="middle">FW1 确认；双方完成 Quick Mode 的活性证明</text><text x="590" y="707" class="tiny" text-anchor="middle">HDR*：ISAKMP 头部可见；其后 Quick Mode 载荷由 Phase 1 IKE SA 加密保护</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="640" viewBox="0 0 1180 640" role="img" aria-label="IKEv1 Quick Mode 动画示意图">
+
+<style><![CDATA[
+  .bg { fill:#0b1220; } .panel { fill:#111d31; stroke:#31445e; stroke-width:1.5; }
+  .edge { stroke:#39506b; stroke-width:1.5; fill:none; }
+  .title { fill:#f8fafc; font:700 32px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .sub { fill:#aebed3; font:400 17px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .head { fill:#f1f5f9; font:700 22px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .body { fill:#d4e3f5; font:400 19px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .tiny { fill:#aebed3; font:400 15px "Noto Sans CJK SC","Microsoft YaHei",system-ui,sans-serif; }
+  .mono { fill:#e0edfb; font:600 17px ui-monospace,SFMono-Regular,Consolas,monospace; }
+  .cyan { fill:#67e8f9; } .green { fill:#5eead4; } .orange { fill:#fdba74; } .purple { fill:#c4b5fd; }
+  .lineC { stroke:#22d3ee; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.2s linear infinite; }
+  .lineG { stroke:#34d399; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.4s linear infinite; }
+  .lineP { stroke:#a78bfa; stroke-width:3.5; fill:none; stroke-dasharray:12 8; animation:flow 1.6s linear infinite; }
+  .pulse { animation:pulse 2.6s ease-in-out infinite; } .pulse2 { animation:pulse 3.2s ease-in-out infinite; }
+  .glow { animation:glow 2.4s ease-in-out infinite; }
+  @keyframes flow {to{stroke-dashoffset:-40}} @keyframes pulse{0%,100%{opacity:.65}50%{opacity:1}}
+  @keyframes glow {0%,100%{filter:drop-shadow(0 0 1px #22d3ee)}50%{filter:drop-shadow(0 0 10px #22d3ee)}}
+  @media (prefers-reduced-motion:reduce){.lineC,.lineG,.lineP,.pulse,.pulse2,.glow{animation:none}}
+]]></style>
+<rect class="bg" width="1180" height="640" rx="22"/>
+<text x="42" y="57" class="title">第二阶段成功后：ESP Tunnel Mode 如何封装报文？</text><text x="42" y="92" class="sub">内网原始 IP 包 → IPsec 网关封装 → 公网传输 → 远端网关解密还原</text><rect x="50" y="124" width="1080" height="76" rx="14" fill="#14283f" stroke="#42607a" stroke-width="1.5" /><text x="77" y="155" class="head">封装前（明文内网报文）</text><rect x="375" y="141" width="240" height="39" rx="6" fill="#2c4560" stroke="#7b9bb8" stroke-width="1.5" /><text x="495" y="166" class="body" text-anchor="middle">内层 IP 头</text><rect x="623" y="141" width="458" height="39" rx="6" fill="#204b53" stroke="#36a5a4" stroke-width="1.5" /><text x="852" y="166" class="body" text-anchor="middle">TCP / UDP + 应用数据</text><path d="M588 207 L588 264" class="lineC"/><circle r="5" fill="#67e8f9" opacity=".95"><animateMotion dur="2s" begin="0s" repeatCount="indefinite" path="M588 207 L588 264"/></circle><text x="625" y="239" class="tiny">FW1 加密 + 封装</text><rect x="50" y="282" width="1080" height="135" rx="14" fill="#14283f" stroke="#42607a" stroke-width="1.5" /><text x="75" y="316" class="head">封装后（ESP Tunnel Mode）</text><rect x="76" y="345" width="178" height="48" rx="5" fill="#255179" stroke="#6385a5" stroke-width="1.5" /><text x="165.0" y="375" class="body" text-anchor="middle">外层 IP 头</text><rect x="260" y="345" width="146" height="48" rx="5" fill="#225f73" stroke="#6385a5" stroke-width="1.5" /><text x="333.0" y="375" class="body" text-anchor="middle">ESP SPI + Seq</text><rect x="412" y="345" width="510" height="48" rx="5" fill="#175c51" stroke="#6385a5" stroke-width="1.5" /><text x="667.0" y="375" class="body" text-anchor="middle">加密的内层 IP 包 + ESP Trailer</text><rect x="928" y="345" width="176" height="48" rx="5" fill="#68418b" stroke="#6385a5" stroke-width="1.5" /><text x="1016.0" y="375" class="body" text-anchor="middle">认证数据 / Tag</text><path d="M414 401 V429 H921 V401" fill="none" stroke="#34d399" stroke-width="2.5"/><text x="669" y="451" class="body" text-anchor="middle">ESP 加密保护区域（示意）</text><text x="590" y="486" class="tiny" text-anchor="middle">外层 IP：FW1 公网地址 → FW2 公网地址；内层 IP：192.168.1.10 → 192.168.2.10</text><rect x="50" y="518" width="1080" height="92" rx="14" fill="#112b30" stroke="#276458" stroke-width="1.5" /><text x="76" y="551" class="body">FW2 收到报文后：识别 ESP / SPI → 查入站 SA → 验证完整性与防重放 → 解密 → 路由转发</text><text x="76" y="583" class="tiny">如使用 NAT-T，还会在外层 IP 与 ESP 之间增加 UDP 4500 封装。</text>
+</svg>
