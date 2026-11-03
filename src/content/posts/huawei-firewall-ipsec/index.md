@@ -13,12 +13,6 @@ lang: 'zh-CN'
 
 ---
 
-## 🌐 实验拓扑
-
-![实验拓扑：华为防火墙 IPsec VPN](./topology.png)
-
----
-
 ## 🧭 IKEv1 协商概览
 
 IKEv1 分为两个阶段：第一阶段建立 IKE SA，第二阶段协商用于保护业务流量的 IPsec SA。
@@ -233,3 +227,75 @@ PC-A 发往 PC-B 的报文：
 **主要字段：** `SPI`、`Sequence Number`、加密的 Payload（在 Tunnel Mode 下含内层 IP 包及相关尾部）、以及算法相关的认证数据或 Tag。
 
 > ⚠️ **注意：** ESP 的 SPI 和 Sequence Number 本身通常可见；它们不是被整体加密的部分。
+
+## 实验
+
+![实验拓扑：华为防火墙 IPsec VPN](./topology.png)
+
+### 配置
+
+FW1
+
+#### 配置IKE Proposal
+
+```
+ike proposal 1
+ encryption-algorithm aes-gcm-256 
+ dh group14 
+ authentication-algorithm sha2-256 
+ authentication-method pre-share
+ integrity-algorithm hmac-sha2-256 
+ prf hmac-sha2-256 
+#
+```
+
+#### 配置IKE Peer
+
+```
+ike peer fw2
+ pre-shared-key Zaq!2wsx
+ remote-address 200.1.1.1 
+#
+```
+
+#### 配置IPSec Proposal
+
+```
+ipsec proposal 1
+ esp authentication-algorithm sha2-256 
+ esp encryption-algorithm aes-256-gcm-128 
+#
+```
+
+#### 配置感兴趣流
+
+```
+acl number 3000
+ rule 5 permit ip source 10.1.1.0 0.0.0.255 destination 10.1.2.0 0.0.0.255
+#
+```
+
+#### 配置IPSec Policy
+
+```
+
+ipsec policy abc 5 isakmp
+ security acl 3000
+ ike-peer fw2
+ proposal 1
+#
+```
+
+#### 在出接口调用
+
+```
+interface GE0/0/0
+ ipsec policy abc 
+#
+```
+
+#### 配置路由
+
+```
+ip route-static 10.1.2.0 24 100.1.1.2
+```
